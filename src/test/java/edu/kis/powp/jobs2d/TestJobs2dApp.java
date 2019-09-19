@@ -10,7 +10,6 @@ import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.command.gui.CommandManagerWindow;
 import edu.kis.powp.jobs2d.command.gui.CommandManagerWindowCommandChangeObserver;
-import edu.kis.powp.jobs2d.drivers.DriverManager;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDriverAdapter;
 import edu.kis.powp.jobs2d.events.SelectLoadSecretCommandOptionListener;
 import edu.kis.powp.jobs2d.events.SelectLoadTriangleListener;
@@ -18,16 +17,9 @@ import edu.kis.powp.jobs2d.events.SelectRunCurrentCommandOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestCustomFigureOptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigure2OptionListener;
 import edu.kis.powp.jobs2d.events.SelectTestFigureOptionListener;
-import edu.kis.powp.jobs2d.features.CommandsFeature;
-import edu.kis.powp.jobs2d.features.DrawerFeature;
-import edu.kis.powp.jobs2d.features.DriverFeature;
+import edu.kis.powp.jobs2d.features.*;
 
-import edu.kis.powp.jobs2d.features.MoveFeature;
-import edu.kis.powp.jobs2d.movment.Rotate;
-import edu.kis.powp.jobs2d.movment.MovmentPoint;
-import edu.kis.powp.jobs2d.movment.MoveDriverAdapter;
-import edu.kis.powp.jobs2d.movment.MovmentManager;
-import edu.kis.powp.jobs2d.movment.RotationManager;
+import edu.kis.powp.jobs2d.movment.*;
 import edu.kis.powp.jobs2d.panel.JPanelMouseControl;
 
 public class TestJobs2dApp {
@@ -146,12 +138,11 @@ public class TestJobs2dApp {
 	}
 
 	private static void setupOn_Off(Application application) {
-		application.addComponentMenuElement(On_OffManager.class, "On", (ActionEvent e) -> On_OffManager.On());
-		application.addComponentMenuElement(On_OffManager.class, "Off", (ActionEvent e) -> On_OffManager.Off());
+		On_OffFeature.setupOn_OffPlugin(application);
 
 	}
 
-W
+
 	/**
 	 * Launch the application.
 	 */

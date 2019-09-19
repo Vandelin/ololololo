@@ -1,6 +1,7 @@
 package edu.kis.powp.jobs2d.movment;
 
 import edu.kis.powp.jobs2d.Job2dDriver;
+import edu.kis.powp.observer.Subscriber;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ public class MoveDriverAdapter implements Job2dDriver {
     private Job2dDriver driver;
     private List<PointMovment> transformerList;
     private String name;
+
 
 
     public MoveDriverAdapter(Job2dDriver driver, String name) {
