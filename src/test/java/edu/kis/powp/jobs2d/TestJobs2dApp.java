@@ -145,7 +145,13 @@ public class TestJobs2dApp {
 
 	}
 
+	private static void setupOn_Off(Application application) {
+		application.addComponentMenuElement(On_OffManager.class, "On", (ActionEvent e) -> On_OffManager.On());
+		application.addComponentMenuElement(On_OffManager.class, "Off", (ActionEvent e) -> On_OffManager.Off());
 
+	}
+
+W
 	/**
 	 * Launch the application.
 	 */
@@ -158,6 +164,7 @@ public class TestJobs2dApp {
 				MoveFeature.setupTransformManager();
 				setupMove(app);
 				setupRotate(app);
+				setupOn_Off(app);
 				DriverFeature.setupDriverPlugin(app);
 
 				setupDrivers(app);

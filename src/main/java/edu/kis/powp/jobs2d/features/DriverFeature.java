@@ -36,7 +36,7 @@ public class DriverFeature {
 	 */
 	public static void addDriver(String name, Job2dDriver driver) {
 		SelectDriverMenuOptionListener listener = new SelectDriverMenuOptionListener(driver, driverManager);
-		app.addComponentMenuElement(DriverFeature.class, name, listener);
+	    app.addComponentMenuElement(DriverFeature.class, name, listener);
 	}
 
 	/**
