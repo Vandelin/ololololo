@@ -63,7 +63,6 @@ public class TestJobs2dApp {
 
 		Job2dDriver loggerDriver = new LoggerDriver();
 		DriverFeature.addDriver("Logger driver", loggerDriver);
-		MoveDriverAdapter moveDriverAdapter;
 		DrawPanelController drawerController = DrawerFeature.getDrawerController();
 
 		/**
@@ -71,24 +70,17 @@ public class TestJobs2dApp {
 		 */
 		Job2dDriver driver = new LineDriverAdapter(drawerController, LineFactory.getBasicLine(), "basic");
 		DriverFeature.getDriverManager().setCurrentDriver(driver);
+		DriverFeature.addDriver("Line Simulator", driver);
+		driver = new LineDriverAdapter(drawerController, LineFactory.getSpecialLine(), "special");
+		DriverFeature.addDriver("Special line Simulator", driver);
+		DriverFeature.updateDriverInfo();
 
+		/*
+		MoveDriverAdapter moveDriverAdapter;
 		moveDriverAdapter = new MoveDriverAdapter(driver, "Basic Line");
 		moveDriverAdapter.addTransformation(new MovmentPoint(MoveFeature.getMovmentManager()));
 		moveDriverAdapter.addTransformation(new Rotate(MoveFeature.getMovmentManager()));
-		driver = moveDriverAdapter;
-		DriverFeature.addDriver("Line Simulator", driver);
-
-		/**
-		 * Special Line
-		 */
-		driver = new LineDriverAdapter(drawerController, LineFactory.getSpecialLine(), "special");
-
-		moveDriverAdapter = new MoveDriverAdapter(driver, "Special Line");
-		moveDriverAdapter.addTransformation(new MovmentPoint(MoveFeature.getMovmentManager()));
-		moveDriverAdapter.addTransformation(new Rotate(MoveFeature.getMovmentManager()));
-		driver = moveDriverAdapter;
-		DriverFeature.addDriver("Special line Simulator", driver);
-
+		driver = moveDriverAdapter;*/
 	}
 
 	private static void setupWindows(Application application) {
