@@ -13,6 +13,7 @@ import java.beans.PropertyChangeSupport;
  */
 public class DriverManager extends Publisher {
 	private Job2dDriver currentDriver = new LoggerDriver();
+	private Publisher changePublisher = new Publisher();
 
 	/**
 	 * @param driver Set the driver as current.
@@ -20,6 +21,7 @@ public class DriverManager extends Publisher {
 	public synchronized void setCurrentDriver(Job2dDriver driver) {
 		currentDriver = driver;
 		notifyObservers();
+		changePublisher.notifyObservers();
 	}
 
 
@@ -29,4 +31,5 @@ public class DriverManager extends Publisher {
 	public synchronized Job2dDriver getCurrentDriver() {
 		return currentDriver;
 	}
+	public Publisher getChangePublisher() { return changePublisher; }
 }

@@ -10,6 +10,7 @@ import edu.kis.legacy.drawer.shape.LineFactory;
 import edu.kis.powp.appbase.Application;
 import edu.kis.powp.jobs2d.command.gui.CommandManagerWindow;
 import edu.kis.powp.jobs2d.command.gui.CommandManagerWindowCommandChangeObserver;
+import edu.kis.powp.jobs2d.command.gui.DriverChangeObserver;
 import edu.kis.powp.jobs2d.drivers.adapter.LineDriverAdapter;
 import edu.kis.powp.jobs2d.events.SelectLoadSecretCommandOptionListener;
 import edu.kis.powp.jobs2d.events.SelectLoadTriangleListener;
@@ -60,23 +61,22 @@ public class TestJobs2dApp {
 	 */
 	private static void setupDrivers(Application application) {
 
+		DriverChangeObserver driverChangeObserver = new DriverChangeObserver();
+		DriverFeature.getDriverManager().getChangePublisher().addSubscriber(driverChangeObserver);
 
 		Job2dDriver loggerDriver = new LoggerDriver();
 		DriverFeature.addDriver("Logger driver", loggerDriver);
 		DrawPanelController drawerController = DrawerFeature.getDrawerController();
 
-		/**
-		 * Basic Line
-		 */
 		Job2dDriver driver = new LineDriverAdapter(drawerController, LineFactory.getBasicLine(), "basic");
 		DriverFeature.getDriverManager().setCurrentDriver(driver);
 		DriverFeature.addDriver("Line Simulator", driver);
+
 		driver = new LineDriverAdapter(drawerController, LineFactory.getSpecialLine(), "special");
 		DriverFeature.addDriver("Special line Simulator", driver);
 		DriverFeature.updateDriverInfo();
 
-		/*
-		MoveDriverAdapter moveDriverAdapter;
+		/*		MoveDriverAdapter moveDriverAdapter;
 		moveDriverAdapter = new MoveDriverAdapter(driver, "Basic Line");
 		moveDriverAdapter.addTransformation(new MovmentPoint(MoveFeature.getMovmentManager()));
 		moveDriverAdapter.addTransformation(new Rotate(MoveFeature.getMovmentManager()));
